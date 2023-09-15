@@ -5,14 +5,15 @@ def records(file_path):
       csv_reader = csv.DictReader(file)
       for row in csv_reader:
         records.append(row)
+def average(records):
+  
+    """ bereken het gemiddelde door alle recods bij elkaar op te tellen en te delen door het totaal"""
+    total = sum(float(record['Grade']) for record in records)
+    average = total / len(records)
 
+    print(f"Average Grade: {average}")
+    print("--------------------")
 file_path = input("Enter the path to the CSV file: ")
-
-total = sum(float(record['Grade']) for record in records)
-average = total / len(records)
-
-print(f"Average Grade: {average}")
-print("--------------------")
 
 filtered_records = [record for record in records if float(record['Grade']) >= 80.0]
 
