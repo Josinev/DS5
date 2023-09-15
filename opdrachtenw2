@@ -1,11 +1,14 @@
-file_path = input("Enter the path to the CSV file: ")
-records = []
-with open(file_path, 'r') as file:
-    csv_reader = csv.DictReader(file)
-    for row in csv_reader:
+def records(file_path):
+    """Lijst maken van het geimporteerde csv bestand met de cijfers van een klas."""
+    records = []
+    with open(file_path, 'r') as file:
+      csv_reader = csv.DictReader(file)
+      for row in csv_reader:
         records.append(row)
 
- total = sum(float(record['Grade']) for record in records)
+file_path = input("Enter the path to the CSV file: ")
+
+total = sum(float(record['Grade']) for record in records)
 average = total / len(records)
 
 print(f"Average Grade: {average}")
