@@ -1,3 +1,4 @@
+"""Opdracht 1"""
 def records(file_path):
     """Lijst maken van het geimporteerde csv bestand met de cijfers van een klas."""
     records = []
@@ -23,3 +24,4 @@ def filter(records):
         print(f"Grade: {record['Grade']}")
         print("--------------------")
 file_path = input("Enter the path to the CSV file: ")
+
