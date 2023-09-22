@@ -15,7 +15,7 @@ def draw_mandel(lengte):
     #Maakt lege set met alleen maar nullen
     mandelbrot_set = np.zeros((lengte, breedte))
     
-    #Met deze forloop komer en 200 gelijke stapjes tussen xmin en xmax
+    #Met deze forloop komen en 200 gelijke stapjes tussen xmin en xmax
     #Hetzelfde geldt voor ymin en ymax
     for i in range(lengte):
         for j in range(breedte):
