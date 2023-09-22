@@ -2,7 +2,7 @@ import networkx as net
 import matplotlib.pyplot as plt
 g = net.Graph()
 
-N = 3
+N = 1
 M = 4
 n0 = 5
 nodes = []
