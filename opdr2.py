@@ -18,9 +18,33 @@ import numpy as np
 #children aantal children
 #country moet een string van 3 letters zijn.
 
-data.fillna(np.NaN)
 
-for i in range(len(data)):
-    if data.iloc[i,5] <= 31 and data.iloc[i,5] <= 31:
-        if data.iloc[i,4] == np.NaN():
-            print(i)
+#arrival_date_month een aantal keer geen maand
+data.iloc[:847,4] = 'July'
+data.iloc[847:,4] = 'August'
+print(len(data))
+
+#stay in week nights
+data = data.drop(data.index[data['stays_in_week_nights'] == 4.3])
+data = data.reset_index(drop=True)
+print(len(data))
+
+#adults aantal adults
+data = data.drop(data.index[data['adults'] >= (data.iloc[:,9].mean() * 2)])
+data = data.reset_index(drop=True)   
+print(len(data))
+
+#adults aantal adults
+data = data.drop(data.index[data['children'] >= (data.iloc[:,10].mean() * 2)])
+data = data.reset_index(drop=True)
+print(len(data))
+
+#country moet een string van 3 letters zijn.
+lst = data.iloc[:,13].unique().tolist()
+lst.remove(2)
+lst.remove(3)
+lst.remove(np.nan)
+
+data = data.drop(data.index[data['country'].isin(lst) == False])
+data = data.reset_index(drop=True)
+print(len(data))
