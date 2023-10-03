@@ -1,6 +1,9 @@
 import pandas as pd
 
 def data_analysis(df = pd.DataFrame):
+    '''Rekent verschillende waardes van dataframe uit.
+    Input: Dataframe
+    Output: Nieuwe DataFrame genaamd reportRetail met daarin verschillende berekende waardes'''
     #Creert nieuwe DataFrame
     df1 = pd.DataFrame()
     df2 = pd.DataFrame()
