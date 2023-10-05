@@ -3,7 +3,7 @@ import pandas as pd
 from nltk.sentiment import SentimentIntensityAnalyzer
 
 #opdr 4.2 deel 1
-tweet = pd.read_excel(tweets.xlsx)
+tweet = pd.read_excel('tweets.xlsx')
 def analyze_sentiment_english(tweet):
     """functie die van een tweet een textblob maakt een daarna het sentiment van de tweet retourneert"""
     blob = TextBlob(tweet)
