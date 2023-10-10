@@ -1,7 +1,21 @@
 from textblob import TextBlob
 import pandas as pd
 from nltk.sentiment import SentimentIntensityAnalyzer
-from opdr4.1 import opdr41
+import langdetect as ld
+
+#opdr 4.1
+def opdr41(df):
+    code = []
+    for i in range(len(df)):
+        try:
+            taal = ld.detect(df.iloc[i,3])
+            code.append(taal)
+        except:
+            taal = 'unknown'
+            code.append(taal)
+
+    df['Language'] = code
+    return df
 
 #opdr 4.2 deel 1
 df = pd.read_excel('tweets.xlsx')
@@ -32,10 +46,15 @@ def analyze_sentiment_other(df):
         return "neutral"
     
 #opdr 4.2 deel 3
-tweet['sentiment'] = tweet.apply(apply_sentiment_analysis, axis=1)
-    
-
-    
-    
-    
-    
+def sentiment(df):
+    opdr41(df)
+    senti = []
+    for i in range(len(df)):
+        if df.iloc[i,9] == "en":
+           a =  analyze_sentiment_english(df)
+           senti.append(a)
+        else:
+         b = analyze_sentiment_other(df)
+         senti.append(b)
+    df["Sentiment"] = senti
+    return df
