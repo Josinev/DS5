@@ -1,12 +1,13 @@
 from textblob import TextBlob
 import pandas as pd
 from nltk.sentiment import SentimentIntensityAnalyzer
+from opdr4.1 import opdr41
 
 #opdr 4.2 deel 1
-tweet = pd.read_excel('tweets.xlsx')
-def analyze_sentiment_english(tweet):
+df = pd.read_excel('tweets.xlsx')
+def analyze_sentiment_english(df):
     """functie die van een tweet een textblob maakt een daarna het sentiment van de tweet retourneert"""
-    blob = TextBlob(tweet)
+    blob = TextBlob(df)
     polarity_score = blob.sentiment.polarity
     
     if polarity_score > 0:
@@ -17,10 +18,10 @@ def analyze_sentiment_english(tweet):
         return "neutural"
     
 #opdr 4.2 deel 2
-def analyze_sentiment_other(tweet):
+def analyze_sentiment_other(df):
     """functie die polarity van de tweet berekend en daarna het sentiment retourneert"""
     analyzer = SentimentIntensityAnalyzer()
-    scores = analyzer.polarity_scores(tweet)
+    scores = analyzer.polarity_scores(df)
     compound_score = scores["compound"]
     
     if compound_score >= 0.05:
