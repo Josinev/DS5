@@ -3,7 +3,6 @@ import langdetect as ld
 
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import nltk
-nltk.download('vader')
 
 df = pd.read_excel('tweets.xlsx') 
 def opdr41(df):

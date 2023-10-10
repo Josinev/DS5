@@ -20,31 +20,39 @@ import numpy as np
 
 
 #arrival_date_month een aantal keer geen maand
-data.iloc[:847,4] = 'July'
-data.iloc[847:,4] = 'August'
-print(len(data))
+def maakmaand(data):
+    """"""
+    data.iloc[:847,4] = 'July'
+    data.iloc[847:,4] = 'August'
+    return data
 
 #stay in week nights
-data = data.drop(data.index[data['stays_in_week_nights'] == 4.3])
-data = data.reset_index(drop=True)
-print(len(data))
+def alsdaggeenintegerdrop(data):
+    data = data.drop(data.index[data['stays_in_week_nights'] == 4.3])
+    data = data.reset_index(drop=True)
+    return data
 
 #adults aantal adults
-data = data.drop(data.index[data['adults'] >= (data.iloc[:,9].mean() * 2)])
-data = data.reset_index(drop=True)   
-print(len(data))
+def volwasseneonreeel(data):
+    data = data.drop(data.index[data['adults'] >= (data.iloc[:,9].mean() * 2)])
+    data = data.reset_index(drop=True)   
+    return data
 
 #adults aantal adults
-data = data.drop(data.index[data['children'] >= (data.iloc[:,10].mean() * 2)])
-data = data.reset_index(drop=True)
-print(len(data))
+def kinderenonreeel(data):
+    data = data.drop(data.index[data['children'] >= (data.iloc[:,10].mean() * 2)])
+    data = data.reset_index(drop=True)
+    return data
 
 #country moet een string van 3 letters zijn.
-lst = data.iloc[:,13].unique().tolist()
-lst.remove(2)
-lst.remove(3)
-lst.remove(np.nan)
+def landisstring(data):
+    lst = data.iloc[:,13].unique().tolist()
+    lst.remove(2)
+    lst.remove(3)
+    lst.remove(np.nan)
 
-data = data.drop(data.index[data['country'].isin(lst) == False])
-data = data.reset_index(drop=True)
-print(len(data))
+    data = data.drop(data.index[data['country'].isin(lst) == False])
+    data = data.reset_index(drop=True)
+    return data
+
+#opschonen 
