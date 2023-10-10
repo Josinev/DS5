@@ -28,7 +28,7 @@ def data_analysis(df = pd.DataFrame):
     result = pd.concat([df1, df2, df3])
     #Zet de dataframe om in een excel bestand
     result.to_excel('reportRetail.xlsx')
-
+    return df1, df2, df3
 
 df = pd.read_excel('detailedRetail.xlsx')
-data_analysis(df)
+print(data_analysis(df))
