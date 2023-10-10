@@ -36,10 +36,10 @@ def analyze_sentiment_english(tweet):
 #print(analyze_sentiment_english(tweet))
     
 #opdr 4.2 deel 2
-def analyze_sentiment_other(df):
+def analyze_sentiment_other(tweet):
     """functie die polarity van de tweet berekend en daarna het sentiment retourneert"""
     analyzer = SentimentIntensityAnalyzer()
-    scores = analyzer.polarity_scores(df)
+    scores = analyzer.polarity_scores(tweet)
     compound_score = scores["compound"]
     
     if compound_score >= 0.05:
@@ -55,11 +55,12 @@ def sentiment(df):
     senti = []
     for i in range(len(df)):
         if df.iloc[i,9] == "en":
-           a =  analyze_sentiment_english(df)
+           a =  analyze_sentiment_english(df.iloc[i,3])
            senti.append(a)
         else:
-         b = analyze_sentiment_other(df)
+         b = analyze_sentiment_other(df.iloc[i,3])
          senti.append(b)
     df["Sentiment"] = senti
     return df
 
+sentiment(df)
