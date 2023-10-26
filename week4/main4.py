@@ -30,7 +30,7 @@ df4 = pd.read_excel('tweets.xlsx')
 #print(analyze_sentiment_english(df4.iloc[3,3]))
 
 # Exercise 4.2 deel 2
-#print(analyze_sentiment_other(df4.iloc[3,3]))              Werkt niet maar er is een poging gewaagt
+#print(analyze_sentiment_other(df4.iloc[3,3]))              Werkt niet, maar er is een poging gewaagt
 
 #Exercise 4.2 deel 3
-#print(sentiment(opdr41(df4)))                              Werkt niet maar er is een poging gewaagt
+#print(sentiment(opdr41(df4)))                              Werkt niet, maar er is een poging gewaagt
