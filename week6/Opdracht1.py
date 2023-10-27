@@ -14,18 +14,18 @@ plt.scatter(x,y)
 plt.xlabel('x')
 plt.ylabel('y')
 plt.title('Dataset')
-plt.show()
+#plt.show()
 
 #b.
 inputValuesTrain = {
-    'x' : x[:80],
-    'y' : y[:80]
+    'x' : x[:160],
+    'y' : y[:160]
 }
 data_train = pd.DataFrame(inputValuesTrain)
 
 inputValuesTest = {
-    'x' : x[80:],
-    'y' : y[80:]
+    'x' : x[160:],
+    'y' : y[160:]
 }
 
 data_test= pd.DataFrame(inputValuesTest)
@@ -46,21 +46,24 @@ results = model.fit()
 predicted_train_y = results.predict(X)
 plt.scatter(data_train['x'], data_train['y'])
 plt.scatter(data_train['x'], predicted_train_y, color='red')
-plt.show()
+#plt.show()
 #e.
 r_squared = results.rsquared
 print(r_squared)
 #De r_squared is best hoog 82.2% dus de best goed model
 
 #f.
-test_x = data_test['x']
-test_x_sq = pd.DataFrame(data_test['x']**2)
+data_test['x2'] = data_test['x'] ** 2
+X = sm.add_constant(data_test.iloc[:,1:3])
 
-test_x_poly = pd.concat([test_x, test_x_sq], axis = 1)
-X_test = sm.add_constant(test_x_poly)
-predicted_test_y = results.predict(X_test)
-r_squared_test = r2_score(data_test['y'], predicted_test_y)
-print(r_squared_test)
+model = sm.OLS(data_test['y'], X)
+results = model.fit()
 
-#Nieuwe r squared is hoger dus model is goed
+predicted_test_y = results.predict(X)
+
+r_squared_new = results.rsquared
+print(r_squared_new)
+
+#De nieuwe r squared is hoger dus het model werkt goed
+
 
