@@ -74,7 +74,7 @@ def r2_mse(results, predict_train_y,df_test):
     mse = mean_squared_error(df_test['y'], predict_test_y)
     print(R2, mse)
     return R2,mse
-
+print(r2_mse(R2,mse))
 #f
 #The R2 of the test sample is lower than the training sample. The MSE of the test sample is way lower than the training sample which is also positive
 #This means that the model is good in predicing.
