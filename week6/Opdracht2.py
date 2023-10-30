@@ -1,13 +1,16 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
-import statsmodels.api as sm
-import sklearn as sk
-from sklearn.metrics import mean_squared_error
-from sklearn.linear_model import LogisticRegression
+import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.model_selection import train_test_split
+import statsmodels.api as sm
 
-#Data outlier functions:
+#a.
+df = pd.read_excel('winequality-red.xlsx')
+
+#b.
+#gedaan
+
+#c.
 def volatile_acidity_drops(df):
     """If a volatile acidity is more than 3 times the median we drop the row."""
     df = df.drop(df.index[df.iloc[:,1] >= df.iloc[:,1].median() * 3])
@@ -37,44 +40,19 @@ def outlier_drops(df):
     df = df.reset_index()
     return df
 
-
-#Exercise 2: Predicting the quality of wine
-#a 
-df = pd.read_excel('winequality-red.xlsx')
-
-#b
-#check
-
-#c
 df = outlier_drops(df)
-#there are no missing values
 
-#d ?
+#d.
+plt.figure(figsize = (8,6))
 #sns.pairplot(df)
 #plt.show()
-    
-#e
-df_training_x = df.iloc[:int(len(df)*0.8), :12]
-df_training_y = df.iloc[:int(len(df)*0.8), 12]
 
-df_test_x = df.iloc[int(len(df)*0.8):, :12]
-df_test_y = df.iloc[int(len(df)*0.8):, 12]
+#e.
+X = df.drop("quality", axis=1)
+y = df["quality"]
 
-#f
-X = sm.add_constant(df_training_x)
-model = sm.OLS(df_training_y, X)
-results = model.fit()
-predict_training_y = results.predict(X)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-#g
-R2 = results.rsquared
-print(R2)
-
-X = sm.add_constant(df_test_x)
-model = sm.OLS(df_test_y, X)
-results = model.fit()
-predict_test_y = results.predict(X)
-R2 = results.rsquared
-print(R2)
-
-#i
+#f.
+X = sm.add_constant(X_train)
+model = sm.OLS(y_train, X)
